@@ -1,0 +1,82 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { collections, texts, works } from "@/lib/content";
+
+const totalVersions = texts.reduce((total, item) => total + item.versions.length, 0);
+const languages = new Set(texts.flatMap((item) => item.versions.map((version) => version.language)));
+---
+<BaseLayout title="Acerca de" description="Propósito, criterios editoriales y derechos de Litera Mythos.">
+  <article class="mx-auto max-w-3xl space-y-10">
+    <header class="space-y-4">
+      <p class="eyebrow">El proyecto</p>
+      <h1 class="font-display text-4xl text-parchment sm:text-5xl">Acerca de Litera Mythos</h1>
+      <p class="text-lg leading-relaxed text-warm-muted">
+        Litera Mythos es una biblioteca digital multilingüe dedicada a textos literarios que viven dentro de obras de ficción: poemas de apertura, canciones, inscripciones y versos que a menudo quedan fuera del foco de la historia principal.
+      </p>
+    </header>
+
+    <div class="hairline"></div>
+
+    <section class="space-y-4">
+      <p class="eyebrow">Propósito</p>
+      <h2 class="font-display text-2xl text-parchment">Leer, contextualizar y comparar</h2>
+      <p class="leading-relaxed text-warm-muted">
+        El objetivo no es construir una wiki generalista ni una base de citas exhaustiva, sino ofrecer una experiencia de lectura cuidada. Cada ficha reúne el texto original, sus traducciones disponibles, la información contextual y las notas necesarias para entender sus decisiones lingüísticas.
+      </p>
+      <p class="leading-relaxed text-warm-muted">
+        El comparador permite poner varias versiones en paralelo para observar cómo cambian el tono, el ritmo, las imágenes y los matices al pasar de un idioma a otro.
+      </p>
+    </section>
+
+    <section id="contenido" class="scroll-mt-24 space-y-4">
+      <p class="eyebrow">Criterios editoriales</p>
+      <h2 class="font-display text-2xl text-parchment">Cómo se organiza el contenido</h2>
+      <ul class="space-y-3 text-warm-muted">
+        <li class="flex gap-3"><span class="text-gold">01.</span><span>Cada obra agrupa una o varias colecciones; cada colección reúne textos con una función común.</span></li>
+        <li class="flex gap-3"><span class="text-gold">02.</span><span>Una ficha puede tener varias versiones en el mismo idioma si proceden de ediciones o traductores distintos.</span></li>
+        <li class="flex gap-3"><span class="text-gold">03.</span><span>El original, las traducciones publicadas y las traducciones propias se identifican por separado. Ninguna traducción propia se presenta como oficial.</span></li>
+        <li class="flex gap-3"><span class="text-gold">04.</span><span>La transliteración se ofrece cuando aporta información útil para leer el texto original.</span></li>
+      </ul>
+    </section>
+
+    <section id="derechos" class="scroll-mt-24 space-y-4">
+      <p class="eyebrow">Derechos y atribuciones</p>
+      <h2 class="font-display text-2xl text-parchment">Una condición del proyecto</h2>
+      <p class="leading-relaxed text-warm-muted">
+        Los poemas de obras contemporáneas, sus traducciones y las ilustraciones asociadas pueden estar protegidos por derechos de autor. Que una traducción sea propia no implica automáticamente que se pueda publicar el texto completo traducido.
+      </p>
+      <p class="leading-relaxed text-warm-muted">
+        Antes de publicar, es necesario comprobar los derechos aplicables en los territorios relevantes, no asumir que un texto encontrado en Internet puede reproducirse libremente, atribuir autores, traductores y ediciones, y limitar la publicación a material que pueda compartirse legalmente cuando no exista autorización.
+      </p>
+      <p class="leading-relaxed text-warm-muted">
+        Los registros incluidos en esta versión son contenido de demostración y deben revisarse antes de su difusión pública.
+      </p>
+    </section>
+
+    <section class="space-y-4">
+      <p class="eyebrow">Estado actual</p>
+      <h2 class="font-display text-2xl text-parchment">El MVP en cifras</h2>
+      <dl class="grid gap-4 sm:grid-cols-4">
+        <div class="rounded-lg border border-bronze/70 bg-surface/60 p-4">
+          <dt class="text-xs uppercase tracking-[0.18em] text-warm-muted">Obras</dt>
+          <dd class="mt-1 font-display text-3xl text-gold">{works.length}</dd>
+        </div>
+        <div class="rounded-lg border border-bronze/70 bg-surface/60 p-4">
+          <dt class="text-xs uppercase tracking-[0.18em] text-warm-muted">Colecciones</dt>
+          <dd class="mt-1 font-display text-3xl text-gold">{collections.length}</dd>
+        </div>
+        <div class="rounded-lg border border-bronze/70 bg-surface/60 p-4">
+          <dt class="text-xs uppercase tracking-[0.18em] text-warm-muted">Textos</dt>
+          <dd class="mt-1 font-display text-3xl text-gold">{texts.length}</dd>
+        </div>
+        <div class="rounded-lg border border-bronze/70 bg-surface/60 p-4">
+          <dt class="text-xs uppercase tracking-[0.18em] text-warm-muted">Versiones</dt>
+          <dd class="mt-1 font-display text-3xl text-gold">{totalVersions}</dd>
+        </div>
+      </dl>
+      <p class="text-sm text-warm-muted">
+        {languages.size} idiomas representados. El contenido se añade mediante archivos JSON en <code class="rounded bg-surface-raised px-1.5 py-0.5 text-xs">src/content/works</code>.
+      </p>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,0 +1,36 @@
+{
+  "id": "bleach-15",
+  "collectionId": "bleach-poems",
+  "slug": "tomo-15",
+  "title": "Tomo 15",
+  "subtitle": "",
+  "creator": "久保 帯人",
+  "creatorTransliteration": "Tite Kubo",
+  "character": "吉良 イヅル",
+  "characterTransliteration": "Izuru Kira",
+  "volume": 15,
+  "source": "Bleach, tomo 15 (Shueisha, 2004)",
+  "publicationDate": "2004",
+  "tags": [],
+  "notes": "",
+  "versions": [
+    {
+      "id": "bleach-15-ja",
+      "language": "ja",
+      "label": "Japonés",
+      "kind": "original",
+      "content": "",
+      "transliteration": "",
+      "source": "Bleach, tomo 15 (Shueisha, 2004)"
+    },
+    {
+      "id": "bleach-15-es",
+      "language": "es",
+      "label": "Español",
+      "kind": "own_translation",
+      "translator": "Equipo Litera Mythos",
+      "content": "",
+      "notes": ""
+    }
+  ]
+}

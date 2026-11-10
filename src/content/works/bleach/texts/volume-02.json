@@ -1,0 +1,36 @@
+{
+  "id": "bleach-02",
+  "collectionId": "bleach-poems",
+  "slug": "tomo-02",
+  "title": "Tomo 02",
+  "subtitle": "La esperanza",
+  "creator": "久保 帯人",
+  "creatorTransliteration": "Tite Kubo",
+  "character": "朽木 ルキア",
+  "characterTransliteration": "Rukia Kuchiki",
+  "volume": 2,
+  "source": "Bleach, tomo 2 (Shueisha, 2002)",
+  "publicationDate": "2002",
+  "tags": [],
+  "notes": "",
+  "versions": [
+    {
+      "id": "bleach-02-ja",
+      "language": "ja",
+      "label": "Japonés",
+      "kind": "original",
+      "content": "人が希望を持ちえるのは\n死が目に見えぬものであるからだ",
+      "transliteration": "hito ga kibou o mochieru\nshi ga me ni mienu mono de aru kara da",
+      "source": "Bleach, tomo 2 (Shueisha, 2002)"
+    },
+    {
+      "id": "bleach-02-es",
+      "language": "es",
+      "label": "Español",
+      "kind": "own_translation",
+      "translator": "Equipo Litera Mythos",
+      "content": "La gente que no ha perdido la esperanza es porque no ha visto a la muerte a la cara.",
+      "notes": "Traducción propia de trabajo, pendiente de revisión editorial."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+---
+import type { TextVersion } from "@/content/schemas";
+import { kindLabel } from "@/lib/content";
+import LanguageBadge from "@/components/LanguageBadge.astro";
+
+interface Props {
+  version: TextVersion;
+  showTransliteration?: boolean;
+  compact?: boolean;
+}
+
+const { version, showTransliteration = true, compact = false } = Astro.props;
+const isOriginal = version.kind === "original";
+---
+<section
+  class:list={[
+    "rounded-lg border bg-surface/60",
+    compact ? "p-4" : "p-6 sm:p-7",
+    isOriginal ? "border-gold/50" : "border-bronze/70",
+  ]}
+  aria-label={`Versión en ${version.label ?? version.language}`}
+>
+  <div class="mb-4 flex flex-wrap items-center gap-2">
+    <LanguageBadge code={version.language} label={version.label} />
+    <span
+      class:list={[
+        "rounded-full px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.16em]",
+        isOriginal ? "bg-gold/10 text-gold" : "bg-surface-raised text-warm-muted",
+      ]}
+    >
+      {kindLabel(version.kind)}
+    </span>
+    {version.translator && <span class="text-xs text-warm-muted">Trad. {version.translator}</span>}
+  </div>
+
+  <div class={version.language === "ja" ? "reading-text-jp" : "reading-text"} lang={version.language}>
+    {version.content || <span class="text-base italic text-warm-muted/70">Texto pendiente de transcripción.</span>}
+  </div>
+
+  {showTransliteration && version.transliteration && (
+    <details class="mt-5 group">
+      <summary class="inline-flex cursor-pointer list-none items-center gap-1.5 text-xs uppercase tracking-[0.18em] text-gold/80 transition-colors hover:text-gold [&::-webkit-details-marker]:hidden">
+        <svg class="size-3 transition-transform group-open:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="m9 18 6-6-6-6"></path>
+        </svg>
+        Transliteración
+      </summary>
+      <p class="mt-2 rounded-md bg-ink/60 p-3 font-sans text-sm leading-relaxed whitespace-pre-line text-warm-muted">
+        {version.transliteration}
+      </p>
+    </details>
+  )}
+
+  {(version.notes || version.source) && (
+    <footer class="mt-5 space-y-1 border-t border-bronze/40 pt-4 text-xs leading-relaxed text-warm-muted">
+      {version.notes && <p>{version.notes}</p>}
+      {version.source && <p class="text-warm-muted/80">Fuente: {version.source}</p>}
+    </footer>
+  )}
+</section>

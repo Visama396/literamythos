@@ -1,0 +1,20 @@
+---
+import { languageName } from "@/lib/content";
+
+interface Props {
+  code: string;
+  label?: string;
+  tone?: "gold" | "muted";
+}
+
+const { code, label, tone = "gold" } = Astro.props;
+---
+<span
+  class:list={[
+    "inline-flex items-center rounded-full border px-2.5 py-1 text-[0.68rem] uppercase tracking-[0.18em]",
+    tone === "gold" ? "border-gold/50 bg-gold/5 text-gold" : "border-bronze/60 bg-surface-raised text-warm-muted",
+  ]}
+  lang={code}
+>
+  {label ?? languageName(code)}
+</span>

@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "cn";
+---
+<BaseLayout title="Página no encontrada" description="La página que buscas no existe en Litera Mythos.">
+  <div class="mx-auto max-w-xl py-16 text-center">
+    <p class="eyebrow">Error 404</p>
+    <h1 class="mt-4 font-display text-5xl text-parchment">Página extraviada</h1>
+    <p class="mt-4 text-warm-muted">
+      El texto que buscas no está en este estante. Puede que haya cambiado de lugar o que todavía no forme parte de la biblioteca.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="/" class={cn(buttonVariants({ size: "lg" }), "bg-gold text-ink hover:bg-gold/90")}>Volver al inicio</a>
+      <a href="/buscar" class={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-bronze text-parchment hover:bg-surface-raised")}>Buscar un texto</a>
+    </div>
+  </div>
+</BaseLayout>

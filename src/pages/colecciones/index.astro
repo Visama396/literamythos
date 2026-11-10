@@ -1,0 +1,42 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CollectionCard from "@/components/CollectionCard.astro";
+import {
+  collections,
+  getTextsForCollection,
+  getWorkById,
+  works,
+} from "@/lib/content";
+
+const entries = collections
+  .map((collection) => {
+    const work = getWorkById(collection.workId);
+    if (!work) return null;
+    const texts = getTextsForCollection(collection.id);
+    return {
+      collection,
+      work,
+      textCount: texts.length,
+      languages: [...new Set(texts.flatMap((item) => item.versions.map((version) => version.language)))].sort(),
+    };
+  })
+  .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
+---
+<BaseLayout title="Colecciones" description="Todas las colecciones de textos disponibles en Litera Mythos.">
+  <header class="space-y-3">
+    <p class="eyebrow">Archivo</p>
+    <h1 class="font-display text-4xl text-parchment sm:text-5xl">Colecciones</h1>
+    <p class="max-w-2xl text-warm-muted">
+      Agrupaciones de textos dentro de cada obra: poemas de apertura, inscripciones, canciones y citas.
+    </p>
+    <p class="text-sm text-warm-muted">{collections.length} colecciones en {works.length} obras.</p>
+  </header>
+
+  <div class="my-8 hairline"></div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    {entries.map(({ collection, work, textCount, languages }) => (
+      <CollectionCard work={work} collection={collection} textCount={textCount} languages={languages} />
+    ))}
+  </div>
+</BaseLayout>

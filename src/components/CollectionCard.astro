@@ -1,0 +1,39 @@
+---
+import type { Collection, Work } from "@/content/schemas";
+import { languageName } from "@/lib/content";
+
+interface Props {
+  work: Work;
+  collection: Collection;
+  textCount: number;
+  languages: string[];
+}
+
+const { work, collection, textCount, languages } = Astro.props;
+const typeLabels: Record<Collection["type"], string> = {
+  poem: "Poesía",
+  song: "Canción",
+  inscription: "Inscripción",
+  quote: "Cita",
+};
+---
+<a href={`/obras/${work.slug}/${collection.slug}`} class="group block h-full">
+  <article class="card-hover flex h-full flex-col rounded-lg border border-bronze/70 bg-surface/60 p-6">
+    <div class="flex items-center justify-between gap-3">
+      <span class="rounded-full border border-gold/40 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-gold">
+        {typeLabels[collection.type]}
+      </span>
+      <span class="text-xs text-warm-muted">{textCount} texto{textCount === 1 ? "" : "s"}</span>
+    </div>
+
+    <h3 class="mt-4 font-display text-xl text-parchment transition-colors group-hover:text-gold">{collection.title}</h3>
+    <p class="mt-1 text-xs uppercase tracking-[0.2em] text-warm-muted">{work.title}</p>
+    <p class="mt-3 flex-1 text-sm leading-relaxed text-warm-muted">{collection.description}</p>
+
+    <div class="mt-4 flex flex-wrap gap-1.5 border-t border-bronze/50 pt-4">
+      {languages.map((code) => (
+        <span class="rounded bg-surface-raised px-1.5 py-0.5 text-[0.68rem] text-warm-muted">{languageName(code)}</span>
+      ))}
+    </div>
+  </article>
+</a>

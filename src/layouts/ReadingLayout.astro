@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+<BaseLayout title={title} description={description} mainClass="container-page py-10 sm:py-14">
+  <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
+    <article class="min-w-0">
+      <slot />
+    </article>
+    <aside class="space-y-6 lg:sticky lg:top-24 lg:self-start">
+      <slot name="aside" />
+    </aside>
+  </div>
+</BaseLayout>

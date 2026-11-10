@@ -1,0 +1,51 @@
+{
+  "id": "lotr-ring",
+  "collectionId": "lotr-ring-verse",
+  "slug": "inscripcion",
+  "title": "Poema del Anillo",
+  "subtitle": "La inscripción del Anillo Único",
+  "creator": "J. R. R. Tolkien",
+  "source": "The Lord of the Rings: The Fellowship of the Ring (George Allen & Unwin, 1954)",
+  "publicationDate": "1954",
+  "tags": ["anillo", "poder", "inscripción", "mordor"],
+  "notes": "Los textos se incluyen con fines de estudio y comparación. Las traducciones publicadas pertenecen a sus respectivas ediciones y traductores; las traducciones propias se identifican como tales. Antes de publicar, revisa los permisos aplicables en tu territorio.",
+  "versions": [
+    {
+      "id": "lotr-ring-en",
+      "language": "en",
+      "label": "Inglés",
+      "kind": "original",
+      "content": "Three Rings for the Elven-kings under the sky,\nSeven for the Dwarf-lords in their halls of stone,\nNine for Mortal Men doomed to die,\nOne for the Dark Lord on his dark throne\nIn the Land of Mordor where the Shadows lie.\nOne Ring to rule them all, One Ring to find them,\nOne Ring to bring them all and in the darkness bind them\nIn the Land of Mordor where the Shadows lie.",
+      "source": "The Lord of the Rings: The Fellowship of the Ring (1954)"
+    },
+    {
+      "id": "lotr-ring-es-official",
+      "language": "es",
+      "label": "Español — traducción publicada",
+      "kind": "official_translation",
+      "translator": "Luis Domènech (ed. Minotauro)",
+      "content": "Tres Anillos para los Reyes Elfos bajo el cielo.\nSiete para los Señores Enanos en casas de piedra.\nNueve para los Hombres Mortales condenados a morir.\nUno para el Señor Oscuro, sobre el trono oscuro\nen la Tierra de Mordor donde se extienden las Sombras.\nUn Anillo para gobernarlos a todos. Un Anillo para encontrarlos,\nun Anillo para atraerlos a todos y atarlos en las tinieblas\nen la Tierra de Mordor donde se extienden las Sombras.",
+      "source": "El Señor de los Anillos (Minotauro)",
+      "notes": "Atribución de referencia; confirma la edición exacta antes de publicar."
+    },
+    {
+      "id": "lotr-ring-es-own",
+      "language": "es",
+      "label": "Español — traducción propia",
+      "kind": "own_translation",
+      "translator": "Equipo Litera Mythos",
+      "content": "Tres anillos para los reyes elfos bajo el cielo,\nsiete para los señores enanos en sus salas de piedra,\nnueve para los hombres mortales condenados a morir,\nuno para el Señor Oscuro sobre su trono oscuro\nen la tierra de Mordor, donde yacen las sombras.\nUn anillo para gobernarlos, un anillo para hallarlos,\nun anillo para reunirlos y atarlos en la oscuridad\nen la tierra de Mordor, donde yacen las sombras.",
+      "notes": "Traducción propia con criterio de lectura literal. No se presenta como versión oficial."
+    },
+    {
+      "id": "lotr-ring-de",
+      "language": "de",
+      "label": "Alemán",
+      "kind": "official_translation",
+      "translator": "Ebba-Margareta von Freymann (ed. Klett-Cotta)",
+      "content": "Drei Ringe den Elbenkönigen hoch im Licht,\nSieben den Zwergenherrschern in ihren Hallen aus Stein,\nDen Sterblichen, ewig dem Tode verfallen, neun,\nEiner dem Dunklen Herrscher auf dunklem Thron\nIm Lande Mordor, wo die Schatten drohn.\nEin Ring, sie zu knechten, sie alle zu finden,\nIns Dunkel zu treiben und ewig zu binden\nIm Lande Mordor, wo die Schatten drohn.",
+      "source": "Der Herr der Ringe (Klett-Cotta)",
+      "notes": "Atribución de referencia; confirma la edición exacta antes de publicar."
+    }
+  ]
+}

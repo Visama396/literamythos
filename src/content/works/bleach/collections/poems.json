@@ -1,0 +1,9 @@
+{
+  "id": "bleach-poems",
+  "workId": "bleach",
+  "slug": "poemas",
+  "title": "Poemas de apertura",
+  "description": "Versos que acompañan la portada de cada tomo. Funcionan como una puerta de entrada al ambiente del volumen y, a menudo, al interior de un personaje.",
+  "type": "poem",
+  "sortOrder": 1
+}

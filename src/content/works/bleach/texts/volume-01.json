@@ -1,0 +1,36 @@
+{
+  "id": "bleach-01",
+  "collectionId": "bleach-poems",
+  "slug": "tomo-01",
+  "title": "Tomo 01",
+  "subtitle": "El miedo a lo invisible",
+  "creator": "久保 宣章",
+  "creatorTransliteration": "Tite Kubo",
+  "character": "黒崎 一護",
+  "characterTransliteration": "Ichigo Kurosaki",
+  "volume": 1,
+  "source": "Bleach, tomo 1 (Shueisha, 2001)",
+  "publicationDate": "2001",
+  "tags": ["miedo", "identidad", "umbral"],
+  "notes": "Registro de demostración. La transcripción japonesa, la traducción y la atribución deben verificarse contra la edición publicada antes de su difusión.",
+  "versions": [
+    {
+      "id": "bleach-01-ja",
+      "language": "ja",
+      "label": "Japonés",
+      "kind": "original",
+      "content": "我等は　姿無きが故に\nそれを畏れ",
+      "transliteration": "warera wa sugata naki ga yue ni\nsore o osore",
+      "source": "Bleach, tomo 1 (Shueisha, 2001)"
+    },
+    {
+      "id": "bleach-01-es",
+      "language": "es",
+      "label": "Español",
+      "kind": "own_translation",
+      "translator": "Equipo Litera Mythos",
+      "content": "Tememos aquello que carece de forma.",
+      "notes": "Traducción propia de trabajo, pendiente de revisión editorial."
+    }
+  ]
+}

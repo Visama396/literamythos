@@ -1,0 +1,80 @@
+---
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/obras", label: "Obras" },
+  { href: "/colecciones", label: "Colecciones" },
+  { href: "/idiomas", label: "Idiomas" },
+  { href: "/acerca-de", label: "Acerca de" },
+];
+
+function isActive(href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+---
+<header class="sticky top-0 z-40 border-b border-bronze/50 bg-ink/85 backdrop-blur-md">
+  <div class="container-page flex h-16 items-center justify-between gap-4">
+    <a href="/" class="group flex items-center gap-3">
+      <span class="flex size-9 items-center justify-center rounded-full border border-gold/50 font-display text-sm text-gold transition-colors group-hover:border-gold group-hover:bg-gold/10">
+        LM
+      </span>
+      <span class="flex flex-col leading-none">
+        <span class="font-display text-lg tracking-wide text-parchment group-hover:text-gold">Litera Mythos</span>
+        <span class="mt-1 hidden text-[0.62rem] uppercase tracking-[0.28em] text-warm-muted sm:block">Biblioteca de ficción</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Navegación principal">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "rounded-md px-3 py-2 text-sm transition-colors",
+            isActive(link.href) ? "bg-gold/10 text-gold" : "text-warm-muted hover:bg-surface-raised hover:text-parchment",
+          ]}
+          aria-current={isActive(link.href) ? "page" : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href="/buscar"
+        class="inline-flex items-center gap-2 rounded-md border border-bronze/70 px-3 py-2 text-sm text-warm-muted transition-colors hover:border-gold/60 hover:text-gold"
+      >
+        <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.5-3.5"></path>
+        </svg>
+        <span class="hidden sm:inline">Buscar</span>
+      </a>
+
+      <details class="group relative md:hidden">
+        <summary class="flex size-9 cursor-pointer list-none items-center justify-center rounded-md border border-bronze/70 text-warm-muted transition-colors hover:border-gold/60 hover:text-gold [&::-webkit-details-marker]:hidden">
+          <span class="sr-only">Abrir menú</span>
+          <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </summary>
+        <nav class="absolute right-0 mt-2 flex w-52 flex-col rounded-lg border border-bronze/70 bg-surface p-2 shadow-xl" aria-label="Navegación móvil">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "rounded-md px-3 py-2 text-sm transition-colors",
+                isActive(link.href) ? "bg-gold/10 text-gold" : "text-warm-muted hover:bg-surface-raised hover:text-parchment",
+              ]}
+              aria-current={isActive(link.href) ? "page" : undefined}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>

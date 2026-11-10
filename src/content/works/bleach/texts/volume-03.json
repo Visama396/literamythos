@@ -1,0 +1,36 @@
+{
+  "id": "bleach-03",
+  "collectionId": "bleach-poems",
+  "slug": "tomo-03",
+  "title": "Tomo 03",
+  "subtitle": "Amor de lluvia",
+  "creator": "久保 帯人",
+  "creatorTransliteration": "Tite Kubo",
+  "character": "井上 織姫",
+  "characterTransliteration": "Orihime Inoue",
+  "volume": 3,
+  "source": "Bleach, tomo 3 (Shueisha, 2002)",
+  "publicationDate": "2002",
+  "tags": [],
+  "notes": "",
+  "versions": [
+    {
+      "id": "bleach-03-ja",
+      "language": "ja",
+      "label": "Japonés",
+      "kind": "original",
+      "content": "もし　わたしが雨だったなら\nそれが永遠に交わることのない\n空と大地を繋ぎ留めるように\n誰かの心を繋ぎ留めることができただろうか",
+      "transliteration": "moshi watashi ga ame datta nara\nsore ga eien ni majiwaru koto no nai\nsora to daichi wo tsunagi tomeru you ni\ndare ka no kokoro o tsunagi tomeru koto ga dekita darou ka",
+      "source": "Bleach, tomo 3 (Shueisha, 2002)"
+    },
+    {
+      "id": "bleach-03-es",
+      "language": "es",
+      "label": "Español",
+      "kind": "own_translation",
+      "translator": "Equipo Litera Mythos",
+      "content": "",
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+---
+import type { TextWithContext } from "@/lib/content";
+import { excerpt, languageName } from "@/lib/content";
+
+interface Props {
+  item: TextWithContext;
+}
+
+const { item } = Astro.props;
+const original = item.versions.find((version) => version.kind === "original") ?? item.versions[0];
+---
+<a href={`/obras/${item.work.slug}/${item.collection.slug}/${item.text.slug}`} class="group block h-full">
+  <article class="card-hover flex h-full flex-col rounded-lg border border-bronze/70 bg-surface/60 p-5">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2 text-[0.68rem] uppercase tracking-[0.2em] text-warm-muted">
+        <span>{item.work.title}</span>
+        <span aria-hidden="true">·</span>
+        <span>{item.collection.title}</span>
+      </div>
+      {typeof item.text.volume === "number" && (
+        <span class="rounded-full border border-gold/40 px-2 py-0.5 text-[0.68rem] text-gold">Tomo {item.text.volume}</span>
+      )}
+    </div>
+
+    <h3 class="mt-3 font-display text-xl text-parchment transition-colors group-hover:text-gold">{item.text.title}</h3>
+    {item.text.subtitle && <p class="mt-0.5 text-sm text-warm-muted">{item.text.subtitle}</p>}
+
+    {original.content ? (
+      <p class="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-parchment/80">{excerpt(original.content, 140)}</p>
+    ) : (
+      <p class="mt-3 flex-1 text-sm italic text-warm-muted/70">Texto pendiente de transcripción.</p>
+    )}
+
+    <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-bronze/50 pt-3">
+      {item.text.character && (
+        <span class="text-xs text-warm-muted">
+          {item.text.character}
+          {item.text.characterTransliteration && (
+            <span class="ml-1.5 text-warm-muted/70">{item.text.characterTransliteration}</span>
+          )}
+        </span>
+      )}
+      <span class="ml-auto flex flex-wrap gap-1.5">
+        {[...new Set(item.versions.map((version) => version.language))].map((code) => (
+          <span class="rounded bg-surface-raised px-1.5 py-0.5 text-[0.68rem] text-warm-muted">{languageName(code)}</span>
+        ))}
+      </span>
+    </div>
+  </article>
+</a>

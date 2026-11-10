@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WorkCard from "@/components/WorkCard.astro";
+import {
+  getCollectionsForWork,
+  getTextsForCollection,
+  getWorkLanguages,
+  works,
+} from "@/lib/content";
+
+const catalog = works.map((work) => {
+  const collections = getCollectionsForWork(work.id);
+  return {
+    work,
+    collections,
+    textCount: collections.reduce((total, collection) => total + getTextsForCollection(collection.id).length, 0),
+    languages: getWorkLanguages(work.id),
+  };
+});
+---
+<BaseLayout title="Obras" description="Catálogo de obras y universos de ficción disponibles en Litera Mythos.">
+  <header class="space-y-3">
+    <p class="eyebrow">Catálogo</p>
+    <h1 class="font-display text-4xl text-parchment sm:text-5xl">Obras</h1>
+    <p class="max-w-2xl text-warm-muted">
+      Cada obra reúne colecciones de textos. Dentro de cada colección encontrarás las fichas con original, traducciones y notas.
+    </p>
+  </header>
+
+  <div class="my-8 hairline"></div>
+
+  <div class="grid gap-6 md:grid-cols-2">
+    {catalog.map(({ work, collections, textCount, languages }) => (
+      <WorkCard
+        work={work}
+        collectionCount={collections.length}
+        textCount={textCount}
+        languages={languages}
+      />
+    ))}
+  </div>
+
+  {catalog.length === 0 && (
+    <div class="rounded-lg border border-dashed border-bronze/70 bg-surface/40 p-10 text-center">
+      <p class="font-display text-xl text-parchment">Todavía no hay obras</p>
+      <p class="mt-2 text-sm text-warm-muted">Añade un archivo work.json en src/content/works para empezar.</p>
+    </div>
+  )}
+</BaseLayout>

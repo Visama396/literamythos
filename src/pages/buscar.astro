@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SearchExplorer from "@/components/SearchExplorer";
+import { getSearchIndex } from "@/lib/content";
+
+const records = getSearchIndex();
+---
+<BaseLayout title="Buscar" description="Busca textos por título, obra, personaje, etiqueta o idioma en Litera Mythos.">
+  <header class="max-w-3xl space-y-3">
+    <p class="eyebrow">Búsqueda</p>
+    <h1 class="font-display text-4xl text-parchment sm:text-5xl">Buscar en la biblioteca</h1>
+    <p class="text-lg leading-relaxed text-warm-muted">
+      Encuentra textos por título, obra, colección, personaje, etiqueta o idioma. La búsqueda se ejecuta sobre el contenido disponible en esta versión.
+    </p>
+  </header>
+
+  <div class="my-8 hairline"></div>
+
+  <SearchExplorer records={records} client:load />
+</BaseLayout>

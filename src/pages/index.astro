@@ -1,16 +1,138 @@
 ---
----
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "cn";
+import { getWorkLanguages, languageName, texts, works } from "@/lib/content";
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+const featuredWorks = works.slice(0, 3);
+const recentTexts = texts.slice(0, 4);
+---
+<BaseLayout title="Litera Mythos" description="Poemas y palabras que viven en otras historias. Una biblioteca digital multilingüe para descubrir, leer y comparar textos literarios de universos de ficción.">
+  <section class="container-page py-16 sm:py-24">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <div class="space-y-6">
+        <p class="eyebrow">Biblioteca literaria multilingüe</p>
+        <h1 class="font-display text-4xl tracking-tight text-parchment sm:text-5xl lg:text-6xl">
+          Poemas y palabras que viven en otras historias
+        </h1>
+        <p class="max-w-2xl text-lg text-warm-muted">
+          Descubre, lee y compara poemas, versos e inscripciones de universos de ficción. Litera Mythos se centra en el texto, el contexto y los matices que se pierden (o encuentran) al cruzar idiomas.
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="/obras" class={cn(buttonVariants({ size: "lg" }), "bg-gold text-ink hover:bg-gold/90")}>
+            Explorar obras
+          </a>
+          <a href="/buscar" class={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-bronze text-parchment hover:bg-surface-raised")}>
+            Buscar en la biblioteca
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-bronze/80 bg-surface/80 p-6 shadow-[0_60px_120px_-80px_rgba(212,175,87,0.35)]">
+        <p class="eyebrow">Primeros pasos</p>
+        <h2 class="mt-2 font-display text-2xl text-parchment">Un recorrido corto</h2>
+        <p class="mt-1 text-sm text-warm-muted">De la obra al comparador en pocos clics.</p>
+        <ol class="mt-5 space-y-3 text-sm text-warm-muted">
+          <li><span class="mr-2 text-gold">01.</span>Elige una obra y su colección.</li>
+          <li><span class="mr-2 text-gold">02.</span>Lee el texto original y sus traducciones.</li>
+          <li><span class="mr-2 text-gold">03.</span>Compara varios idiomas en el comparador.</li>
+        </ol>
+        <div class="my-5 h-px w-full bg-bronze/60"></div>
+        <p class="text-xs uppercase tracking-[0.24em] text-warm-muted">Textos de demostración: {texts.length}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section class="container-page py-16">
+    <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div class="space-y-3">
+        <p class="eyebrow">Obras destacadas</p>
+        <h2 class="font-display text-3xl text-parchment sm:text-4xl">Universos a descubrir</h2>
+        <p class="max-w-2xl text-warm-muted">Dos casos para validar la estructura: una colección de poemas de tomo y un mismo poema en varios idiomas.</p>
+      </div>
+      <a href="/obras" class="link-quiet text-sm">Ver todo el catálogo →</a>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {featuredWorks.map((work) => {
+        const languages = getWorkLanguages(work.id);
+        return (
+          <a href={`/obras/${work.slug}`} class="group block">
+            <article class="card-hover flex h-full flex-col rounded-lg border border-bronze/80 bg-surface/70 p-6">
+              <div class="flex items-center justify-between gap-3">
+                <Badge variant="outline" className="border-gold/60 text-gold">Obra</Badge>
+                <span class="text-xs uppercase tracking-[0.22em] text-warm-muted">{languages.length} idioma{languages.length === 1 ? "" : "s"}</span>
+              </div>
+              <h3 class="mt-5 font-display text-2xl text-parchment transition-colors group-hover:text-gold">{work.title}</h3>
+              <p class="mt-1 text-xs uppercase tracking-[0.2em] text-warm-muted">{work.creator}</p>
+              <p class="mt-4 flex-1 text-sm leading-relaxed text-warm-muted">{work.description}</p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                {languages.map((code) => (
+                  <span class="rounded-full border border-bronze/60 bg-surface-raised px-2.5 py-1 text-xs text-warm-muted">{languageName(code)}</span>
+                ))}
+              </div>
+            </article>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <div class="hairline"></div>
+
+  <section class="container-page py-16">
+    <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div class="space-y-3">
+        <p class="eyebrow">Últimos textos</p>
+        <h2 class="font-display text-3xl text-parchment sm:text-4xl">Fichas de demostración</h2>
+        <p class="max-w-2xl text-warm-muted">Cada ficha muestra original, traducciones, transliteración (cuando aplica) y el acceso al comparador.</p>
+      </div>
+      <a href="/buscar" class="link-quiet text-sm">Ir al buscador →</a>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      {recentTexts.map((item) => (
+        <a href={`/obras/${item.work.slug}/${item.collection.slug}/${item.text.slug}`} class="group block">
+          <article class="card-hover flex h-full flex-col rounded-lg border border-bronze/70 bg-surface/60 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-[0.68rem] uppercase tracking-[0.2em] text-warm-muted">{item.work.title} · {item.collection.title}</span>
+              {typeof item.text.volume === "number" && (
+                <span class="rounded-full border border-gold/40 px-2 py-0.5 text-[0.68rem] text-gold">Tomo {item.text.volume}</span>
+              )}
+            </div>
+            <h3 class="mt-3 font-display text-xl text-parchment transition-colors group-hover:text-gold">{item.text.title}</h3>
+            {item.text.subtitle && <p class="mt-0.5 text-sm text-warm-muted">{item.text.subtitle}</p>}
+            <div class="mt-4 flex flex-wrap items-center gap-2 border-t border-bronze/50 pt-3">
+              {item.text.character && <span class="text-xs text-warm-muted">{item.text.character}</span>}
+              <span class="ml-auto flex flex-wrap gap-1.5">
+                {[...new Set(item.versions.map((version) => version.language))].map((code) => (
+                  <span class="rounded bg-surface-raised px-1.5 py-0.5 text-[0.68rem] text-warm-muted">{languageName(code)}</span>
+                ))}
+              </span>
+            </div>
+          </article>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-page pb-24">
+    <div class="rounded-lg border border-bronze/80 bg-gradient-to-r from-surface/90 to-ink/90 p-8">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div class="space-y-3">
+          <p class="eyebrow">Proyecto en desarrollo</p>
+          <h2 class="font-display text-2xl text-parchment sm:text-3xl">Un modelo de contenido listo para crecer</h2>
+          <p class="max-w-2xl text-warm-muted">
+            El contenido se gestiona con archivos JSON. Añade nuevas obras, colecciones y versiones sin modificar los componentes.
+          </p>
+        </div>
+        <a href="/acerca-de" class={cn(buttonVariants({ variant: "outline", size: "lg" }), "border-gold/60 text-gold hover:bg-gold/10")}>
+          Criterios editoriales
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

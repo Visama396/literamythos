@@ -1,0 +1,9 @@
+{
+  "id": "lotr-ring-verse",
+  "workId": "lord-of-the-rings",
+  "slug": "poema-del-anillo",
+  "title": "Poema del Anillo",
+  "description": "La inscripción del Anillo Único, presentada en la obra como un texto antiguo y cargada de resonancias. Sus traducciones permiten comparar métrica, tono y decisiones de estilo.",
+  "type": "inscription",
+  "sortOrder": 1
+}

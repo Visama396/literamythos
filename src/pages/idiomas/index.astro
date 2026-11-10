@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getLanguageIndex, languageName } from "@/lib/content";
+
+const index = getLanguageIndex();
+const totalVersions = index.reduce((total, entry) => total + entry.count, 0);
+---
+<BaseLayout title="Idiomas" description="Explora los idiomas disponibles en la biblioteca de Litera Mythos.">
+  <header class="space-y-3">
+    <p class="eyebrow">Exploración</p>
+    <h1 class="font-display text-4xl text-parchment sm:text-5xl">Idiomas</h1>
+    <p class="max-w-2xl text-warm-muted">
+      Un mismo texto puede existir en varios idiomas y, dentro del mismo idioma, en distintas ediciones o traducciones.
+    </p>
+    <p class="text-sm text-warm-muted">{index.length} idiomas · {totalVersions} apariciones de texto</p>
+  </header>
+
+  <div class="my-8 hairline"></div>
+
+  <div class="space-y-8">
+    {index.map((entry) => (
+      <section aria-labelledby={`lang-${entry.code}`} class="rounded-lg border border-bronze/70 bg-surface/50 p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <h2 id={`lang-${entry.code}`} class="font-display text-2xl text-parchment">{languageName(entry.code)}</h2>
+            <span class="rounded-full border border-gold/40 px-2.5 py-1 text-[0.65rem] uppercase tracking-[0.18em] text-gold">{entry.code}</span>
+          </div>
+          <span class="text-sm text-warm-muted">{entry.count} texto{entry.count === 1 ? "" : "s"}</span>
+        </div>
+
+        <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+          {entry.texts.map((item) => (
+            <li>
+              <a
+                href={`/obras/${item.work.slug}/${item.collection.slug}/${item.text.slug}`}
+                class="group flex items-baseline justify-between gap-3 rounded-md border border-transparent px-3 py-2 transition-colors hover:border-bronze/60 hover:bg-ink/40"
+              >
+                <span class="min-w-0">
+                  <span class="block truncate font-display text-base text-parchment group-hover:text-gold">{item.text.title}</span>
+                  <span class="block truncate text-xs text-warm-muted">{item.work.title} · {item.collection.title}</span>
+                </span>
+                <span class="shrink-0 text-xs text-warm-muted">{item.versions.filter((version) => version.language === entry.code).length} versión</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
